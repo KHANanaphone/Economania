@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app='economania'>
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="shortcut icon" type="image/png" href="imports/jasmine/jasmine-2.3.4/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="imports/jasmine/jasmine-2.3.4/jasmine.css">
+    
+    <script type="text/javascript" src="imports/jasmine/jasmine-2.3.4/jasmine.js"></script>
+    <script type="text/javascript" src="imports/jasmine/jasmine-2.3.4/jasmine-html.js"></script>
+    <script type="text/javascript" src="imports/jasmine/jasmine-2.3.4/boot.js"></script>
+    
+    <script src="imports/angular.min.js"></script>
+    <script src="imports/angular-mocks.js"></script>
+    
+    <script src="js/tests/tests.js"></script>
+    <script src="js/tests/testFileSelect.js"></script>
+    <script src="js/tests/testMainMenu.js"></script>
+    <script src="js/tests/testCompany.js"></script>
+    
+    <script src="js/game.js"></script>   
+    <script src="js/main.js"></script>   
+    <script src="js/company.js"></script> 
+</head>
+<body>
+<div id="container">
+<div id="game" ng-controller="game">
+    <div id="main-menu" class="screen" ng-show="screen == 'mainMenu'" 
+         ng-include="'html/mainMenu.html'"></div> 
+    <div id="file-select" class="screen" ng-show="screen == 'fileSelect'" 
+         ng-include="'html/fileSelect.html'"></div>
+</div>  
+</div>  
+</body>
+</html>
