@@ -14,7 +14,7 @@ Tests.companyTests = function(){
             
             var c = new Company();
             var data = c.generateSaveData();        
-            var c2 = Company.createFromSavedData(data);
+            var c2 = new Company(data);
             
             expect(c2 instanceof Company).toBeTruthy();
         }));
@@ -26,7 +26,7 @@ Tests.companyTests = function(){
             c.prop2 = null;
             c.prop3 = 500;
             
-            var c2 = Company.createFromSavedData(c.generateSaveData());
+            var c2 = new Company(c.generateSaveData());
             
             expect(c2.prop1).toBe('aaa');
             expect(c2.prop2).toBe(null);
@@ -38,7 +38,7 @@ Tests.companyTests = function(){
             var c = new Company();
             c.array = ['aaa', null, 500];
             
-            var c2 = Company.createFromSavedData(c.generateSaveData());
+            var c2 = new Company(c.generateSaveData());
         
             expect(c2.array instanceof Array).toBeTruthy();
             expect(c2.array[0]).toBe('aaa');
@@ -51,7 +51,7 @@ Tests.companyTests = function(){
             var c = new Company();
             c.object = {a: 'aaa', b: null, c: 500};
             
-            var c2 = Company.createFromSavedData(c.generateSaveData());
+            var c2 = new Company(c.generateSaveData());
         
             expect(c2.object instanceof Object).toBeTruthy();
             expect(c2.object.a).toBe('aaa');
@@ -65,7 +65,7 @@ Tests.companyTests = function(){
             c.array = [{a: 0, b: 1, c: 2}, [3, 4, {d: 5, e: 6, f: [7, 8]}]];
             c.object = {g: [[[[[9, 10], 11], 12], 13], 14], h: 15};
             
-            var c2 = Company.createFromSavedData(c.generateSaveData());
+            var c2 = new Company(c.generateSaveData());
             
             expect(c2.array[0].a).toBe(0);
             expect(c2.array[0].b).toBe(1);

@@ -16,40 +16,61 @@ var eco = angular.module('economania', []);
             
             $scope.slot = slot;
             $scope.company = new Company();
-            $scope.setScreen('difficultySelect');
         };
         
         $scope.difficultySelected = function(diff){
-            
+        
             $scope.company.difficulty = diff;
-            $scope.setScreen('planet', true);
         };
         
         $scope.save = function(){
             
+            debugger;
+            $scope.company.screen = $scope.screen;
+            
+            localStorage[$scope.storageName + 'Slot'] = $scope.slot;
             localStorage[$scope.storageName + 'Company' + $scope.slot] 
                 = $scope.company.generateSaveData();
         };
+        
+        $scope.loadSaves = function(){
+            
+            $scope.files = [];
+            
+            for(var i = 0; i < 3; i++){
+                var company = localStorage[$scope.storageName + 'Company' + i];
+                $scope.files[i] = company ? new Company(company) : null;
+            };
+        };
+        
+        $scope.fileSelected = function(slot){
+            
+            $scope.loadSlot(slot);
+        };
+        
+        $scope.loadFromLocalStorage = function(){
+
+            var prefix = $scope.storageName;
+            var slot = localStorage[prefix + 'Slot'];
+
+            if(slot) $scope.slot = parseInt(slot);
+            else return $scope.slot = -1;
+
+            $scope.loadSlot($scope.slot);
+        };
+        
+        $scope.loadSlot = function(slot){
+            
+            var prefix = $scope.storageName;
+            var company = new Company(localStorage[prefix + 'Company' + slot]);
+            $scope.screen = company.screen;
+            $scope.company = company;
+        }
 
         $scope.storageName = $scope.storageName ? $scope.storageName : 'eco';
-        loadFromLocalStorage($scope);
+        $scope.loadFromLocalStorage();
 
-        if($scope.slot == 0)
+        if($scope.slot == -1)
             $scope.setScreen('mainMenu');
-    });
-
-    //loads game info from local storage. if there is none, or the slot is set to 0,
-    //then we'll just be going to the main menu instead
-    function loadFromLocalStorage($scope){
-
-        var prefix = $scope.storageName;
-        var slot = localStorage[prefix + 'Slot'];
-
-        if(slot) $scope.slot = parseInt(slot);
-        else return $scope.slot = 0;
-        
-        $scope.screen =  localStorage[prefix + 'Screen' + slot];
-        $scope.company = Company.createFromSavedData(localStorage[prefix + 'Company' + slot]);
-    };
-    
+    });    
 })();

@@ -1,27 +1,17 @@
-function Company(){
+function Company(vars){
     
-    this.cash = 0;
+    if(typeof vars === "string")
+        vars = JSON.parse(vars);
+    
     this.reps = {};
+    this.name = "Company X";
+    this.cash = 10000;
+    
+    for(var i in vars)        
+        this[i] = vars[i];    
 };
 
 Company.prototype.generateSaveData = function(){
     
     return JSON.stringify(this);
-};
-
-Company.createFromSavedData = function(dataString){
-    
-    if(!dataString)
-        return null;
-    
-    var obj = JSON.parse(dataString);    
-    var c = new Company();
-    
-    for(var i in obj){
-        
-        var item = obj[i];        
-        c[i] = item;
-    };
-    
-    return c;
 };

@@ -14,9 +14,9 @@ Tests.mainMenuTests = function(){
             expect(scope.screen).toBe('mainMenu');
         }));
         
-        it('should default to mainMenu screen if local storage slot is set to 0', inject(function($controller) {
+        it('should default to mainMenu screen if local storage slot is set to -1', inject(function($controller) {
 
-            localStorage.ecotestSlot = 0;
+            localStorage.ecotestSlot = -1;
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('game', {$scope:scope});
@@ -26,14 +26,17 @@ Tests.mainMenuTests = function(){
         
         it('should grab current slot & screen from local storage', inject(function($controller) {
             
-            localStorage.ecotestSlot = 1;
-            localStorage.ecotestScreen1 = 'planet';
+            var c = new Company();
+            c.screen = 'aaa';
+            
+            localStorage.ecotestSlot = 0;
+            localStorage.ecotestCompany0 = c.generateSaveData();
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('game', {$scope:scope});            
 
-            expect(scope.slot).toBe(1);
-            expect(scope.screen).toBe('planet');
+            expect(scope.slot).toBe(0);
+            expect(scope.screen).toBe('aaa');
         }));
         
         it('should make a new company when newGame is called', inject(function($controller) {
@@ -41,7 +44,7 @@ Tests.mainMenuTests = function(){
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('game', {$scope:scope});
             
-            scope.slot = 1;
+            scope.slot = 0;
             scope.newGame();  
             
             expect(scope.company).toBeDefined();
@@ -49,12 +52,12 @@ Tests.mainMenuTests = function(){
         
         it('should load the company info if initial local storage slot is nonzero', inject(function($controller) {
 
-            localStorage.ecotestSlot = 1;
-            localStorage.ecotestScreen1 = 'planet';
+            localStorage.ecotestSlot = 0;
+            localStorage.ecotestScreen0 = 'planet';
             
             var c = new Company();
             c.cash = 10000;
-            localStorage.ecotestCompany1 = c.generateSaveData();
+            localStorage.ecotestCompany0 = c.generateSaveData();
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('game', {$scope:scope});

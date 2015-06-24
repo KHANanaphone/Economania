@@ -1,5 +1,10 @@
 <h1>Select a file</h1>
-<button ng-click="newGame(1)">New Game</button>
-<button ng-disabled="true">New Game</button>
-<button ng-disabled="true">New Game</button>
-<button ng-click="setScreen('mainMenu')">Back</button>
+
+<div ng-repeat="file in files track by $index">
+    <button ng-show="file" ng-click="loadSlot($index); setScreen(screen);">{{file.name}}</button>
+    <button ng-hide="file" ng-click="newGame($index); setScreen('difficultySelect');">New Game</button>
+</div>
+
+<div>
+    <button ng-click="setScreen('mainMenu')">Back</button>
+</div>

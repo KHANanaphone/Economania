@@ -1,5 +1,9 @@
+<h1>Company Name</h1>
+<input ng-model="company.name">
+
 <h1>Difficulty Select</h1>
-<button ng-disabled="true">Tutorial</button>
-<button ng-click="difficultySelected(2)">Normal</button>
-<button ng-disabled="true">Hard</button>
+<button ng-disabled="true">Tutorial</button><br />
+<button ng-click="difficultySelected(1); setScreen('planet', true);">Normal</button><br />
+<button ng-disabled="true">Hard</button><br />
 <button ng-click="setScreen('fileSelect')">Back</button>
+
