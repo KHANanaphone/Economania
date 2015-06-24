@@ -1,7 +1,7 @@
 <h1>Select a file</h1>
 
 <div ng-repeat="file in files track by $index">
-    <button ng-show="file" ng-click="loadSlot($index); setScreen(screen);">{{file.name}}</button>
+    <button ng-show="file" ng-click="loadSlot($index); setScreen(screen);">{{file.company.name}}</button>
     <button ng-hide="file" ng-click="newGame($index); setScreen('difficultySelect');">New Game</button>
 </div>
 

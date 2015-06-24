@@ -1,10 +1,10 @@
-Tests.companyTests = function(){
+Tests.gameTests = function(){
     
-    describe('Converting from Company to string back to Company', function(){
+    describe('Converting from Game to string back to Game', function(){
         
         it('should convert to a string', inject(function($controller) {
             
-            var c = new Company();
+            var c = new Game();
             var data = c.generateSaveData();
             
             expect(typeof data).toBe('string');
@@ -12,21 +12,21 @@ Tests.companyTests = function(){
         
         it('should convert back to a company object', inject(function($controller) {
             
-            var c = new Company();
+            var c = new Game();
             var data = c.generateSaveData();        
-            var c2 = new Company(data);
+            var c2 = new Game(data);
             
-            expect(c2 instanceof Company).toBeTruthy();
+            expect(c2 instanceof Game).toBeTruthy();
         }));
                 
         it('should convert custom properties', inject(function($controller) {
                         
-            var c = new Company();
+            var c = new Game();
             c.prop1 = 'aaa';
             c.prop2 = null;
             c.prop3 = 500;
             
-            var c2 = new Company(c.generateSaveData());
+            var c2 = new Game(c.generateSaveData());
             
             expect(c2.prop1).toBe('aaa');
             expect(c2.prop2).toBe(null);
@@ -35,10 +35,10 @@ Tests.companyTests = function(){
         
         it('should convert arrays', inject(function($controller) {
                         
-            var c = new Company();
+            var c = new Game();
             c.array = ['aaa', null, 500];
             
-            var c2 = new Company(c.generateSaveData());
+            var c2 = new Game(c.generateSaveData());
         
             expect(c2.array instanceof Array).toBeTruthy();
             expect(c2.array[0]).toBe('aaa');
@@ -48,10 +48,10 @@ Tests.companyTests = function(){
         
         it('should convert objects', inject(function($controller) {
                         
-            var c = new Company();
+            var c = new Game();
             c.object = {a: 'aaa', b: null, c: 500};
             
-            var c2 = new Company(c.generateSaveData());
+            var c2 = new Game(c.generateSaveData());
         
             expect(c2.object instanceof Object).toBeTruthy();
             expect(c2.object.a).toBe('aaa');
@@ -61,11 +61,11 @@ Tests.companyTests = function(){
         
         it('should convert nested arrays & objects', inject(function($controller) {
                         
-            var c = new Company();
+            var c = new Game();
             c.array = [{a: 0, b: 1, c: 2}, [3, 4, {d: 5, e: 6, f: [7, 8]}]];
             c.object = {g: [[[[[9, 10], 11], 12], 13], 14], h: 15};
             
-            var c2 = new Company(c.generateSaveData());
+            var c2 = new Game(c.generateSaveData());
             
             expect(c2.array[0].a).toBe(0);
             expect(c2.array[0].b).toBe(1);

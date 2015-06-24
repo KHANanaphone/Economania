@@ -6,12 +6,12 @@ Tests.fileSelectTests = function(){
         
         it('should load file info when "loadSaves" is called', inject(function($controller) {
 
-            localStorage.ecotestCompany0 = new Company({name: 'Bbbb'}).generateSaveData();
-            localStorage.removeItem('ecotestCompany1');
-            localStorage.ecotestCompany2 = new Company({name: 'Aaaa'}).generateSaveData();
+            localStorage.ecotestGame0 = new Game({name: 'Bbbb'}).generateSaveData();
+            localStorage.removeItem('ecotestGame1');
+            localStorage.ecotestGame2 = new Game({name: 'Aaaa'}).generateSaveData();
             
             var scope = {storageName: 'ecotest'},
-                ctrl = $controller('game', {$scope:scope});
+                ctrl = $controller('ecoController', {$scope:scope});
 
             scope.loadSaves();
             
@@ -20,17 +20,17 @@ Tests.fileSelectTests = function(){
             expect(scope.files[2].name).toBe('Aaaa');
         }));
         
-        it('should load file info into company when "fileSelected" is called', inject(function($controller) {
+        it('should load file info into Game when "fileSelected" is called', inject(function($controller) {
 
-            localStorage.ecotestCompany1 = new Company({name: 'Aaaa'}).generateSaveData();
+            localStorage.ecotestGame1 = new Game({name: 'Aaaa'}).generateSaveData();
             
             var scope = {storageName: 'ecotest'},
-                ctrl = $controller('game', {$scope:scope});
+                ctrl = $controller('ecoController', {$scope:scope});
 
             scope.fileSelected(1);
             
-            expect(scope.company).toBeDefined();
-            expect(scope.company.name).toBe('Aaaa');
+            expect(scope.game).toBeDefined();
+            expect(scope.game.name).toBe('Aaaa');
         }));
     });
              

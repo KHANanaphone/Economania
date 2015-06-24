@@ -18,25 +18,20 @@
     <script src="js/tests/tests.js"></script>
     <script src="js/tests/testFileSelect.js"></script>
     <script src="js/tests/testMainMenu.js"></script>
-    <script src="js/tests/testCompany.js"></script>
+    <script src="js/tests/testGame.js"></script>
+    <script src="js/tests/testOptions.js"></script>
     
-    <script src="js/game.js"></script>   
+    <script src="js/ecoController.js"></script>   
     <script src="js/main.js"></script>   
-    <script src="js/company.js"></script> 
+    <script src="js/game.js"></script> 
 </head>
 <body>
 <div id="container">
-<div id="game" ng-controller="game">
-    <div id="main-menu" class="screen" ng-show="screen == 'mainMenu'" 
-         ng-include="'html/mainMenu.html'"></div> 
-    <div id="file-select" class="screen" ng-show="screen == 'fileSelect'" 
-         ng-include="'html/fileSelect.html'"></div>
-    <div id="difficulty-select" class="screen" ng-show="screen == 'difficultySelect'" 
-         ng-include="'html/difficultySelect.html'"></div>
-    <div id="planet" class="screen" ng-show="screen == 'planet'" 
-         ng-include="'html/planet.html'"></div>
-    <div id="event" class="screen" ng-show="screen == 'event'" 
-         ng-include="'html/event.html'"></div>
+<div id="game" ng-controller="ecoController">
+    <div ng-repeat="screenName in SCREEN_NAMES">    
+        <div ng-attr-id="{{screenName}}" class="screen" ng-show="screen == screenName" 
+             ng-include="'html/' + screenName + '.html'"></div> 
+    </div>
 </div>  
 </div>  
 </body>
