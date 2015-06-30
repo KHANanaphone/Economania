@@ -84,5 +84,51 @@ Tests.gameTests = function(){
             expect(c2.object.g[1]).toBe(14);
             expect(c2.object.h).toBe(15);            
         }));
-    });    
+    });  
+    
+    describe('Creating a new game', function(){
+        
+        it('should set the "planet"', inject(function($controller) { 
+            
+            var g = new Game()
+            g.newGame();
+
+            expect(g.planet).toBeDefined();
+            expect(g.planet.name).toBeDefined();
+            expect(typeof g.planet.special).toBe('string');
+            expect(g.planet.commodities).toBeDefined();
+            expect(g.planet.destinations).toBeDefined();
+            expect(g.planet.destinations.length).toBe(3);
+        }));
+        
+        it('should set the "ship" variable', inject(function($controller) { 
+            
+            var g = new Game()
+            g.newGame();
+            
+            expect(g.ship).toBeDefined();
+            expect(g.ship.spaceUsed).toBe(0);
+            expect(g.ship.size).toBe(100);
+        }));
+        
+        it('should set the "company" variable', inject(function($controller) { 
+            
+            var g = new Game()
+            g.newGame();
+            
+            expect(g.company).toBeDefined();
+            expect(g.company.cash).toBe(10000);
+        }));
+        
+        it('should create a randomly picked commodities list', inject(function($controller) { 
+            
+            var g = new Game()
+            g.newGame();
+            
+            expect(g.commodities).toBeDefined();            
+            expect(g.commodities.length).toBe(8);          
+            expect(g.commodities[0].name).toBeDefined();  
+            expect(g.commodities[0].average).toBe(20);
+        }));
+    });                                                
 };

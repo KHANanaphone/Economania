@@ -12,7 +12,9 @@ var eco = angular.module('economania', []);
             'mainMenu',
             'options',
             'planet',
-            'ship'
+            'ship',
+            'travel',
+            'market'
         ];
         
         $scope.setScreen = function(screen, save){
@@ -45,11 +47,13 @@ var eco = angular.module('economania', []);
             
             $scope.slot = slot;
             $scope.game = new Game();
+            $scope.game.newGame();
         };
         
         $scope.difficultySelected = function(diff){
         
             $scope.game.difficulty = diff;
+            $scope.setScreen('planet', true);
         };
         
         $scope.save = function(){
@@ -93,7 +97,12 @@ var eco = angular.module('economania', []);
             var game = new Game(localStorage[prefix + 'Game' + slot]);
             $scope.screen = game.screen;
             $scope.game = game;
-        }
+        };
+        
+        $scope.explorePlanet = function(){
+            
+            $scope.setScreen('event');
+        };
 
         $scope.storageName = $scope.storageName ? $scope.storageName : 'eco';
         $scope.loadFromLocalStorage();

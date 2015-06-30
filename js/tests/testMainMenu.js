@@ -1,6 +1,6 @@
 Tests.mainMenuTests = function(){
     
-    describe('Game startup tests', function(){
+    describe('Game startup', function(){
         
         beforeEach(module('economania'));
 
@@ -55,15 +55,15 @@ Tests.mainMenuTests = function(){
             localStorage.ecotestSlot = 0;
             localStorage.ecotestScreen0 = 'planet';
             
-            var c = new Game();
-            c.cash = 10000;
-            localStorage.ecotestGame0 = c.generateSaveData();
+            var g = new Game();
+            g.a = 10000;
+            localStorage.ecotestGame0 = g.generateSaveData();
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
             
             expect(scope.game).toBeDefined();
-            expect(scope.game.company.cash).toBe(10000);
+            expect(scope.game.a).toBe(10000);
         }));
         
         it('should save to local storage after newGame + difficulty is selected', inject(function($controller) {
