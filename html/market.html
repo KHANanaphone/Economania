@@ -1,3 +1,25 @@
 <h1>Market</h1>
 
+<table>
+    <thead>
+        <td>Name</td>
+        <td>Avg Price</td>
+        <td>On Planet</td>
+        <td>Buy Price</td>
+        <td></td>
+        <td>On Ship</td>
+        <td>Sell Price</td>
+    </thead>
+    <tr ng-repeat="comm in game.planet.commodities">
+        <td>{{comm.name}}</td>
+        <td>${{comm.average}}</td>
+        <td>{{comm.count}}</td>
+        <td>${{comm.price}}</td>
+        <td>BUY -> <- SELL</td>
+        <td>?</td>
+        <td>$?</td>
+    </tr>
+</table>
+
+<button ng-click="setScreen('planet')">Back</button> <br />
 <div id="footer" ng-include="'html/_footer.html'"></div>

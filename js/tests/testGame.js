@@ -106,9 +106,9 @@ Tests.gameTests = function(){
             var g = new Game()
             g.newGame();
             
-            expect(g.ship).toBeDefined();
-            expect(g.ship.spaceUsed).toBe(0);
+            expect(g.ship.spaceUsed).toBe(g.ship.crew);
             expect(g.ship.size).toBe(100);
+            expect(typeof g.ship.commodities).toBe('object');
         }));
         
         it('should set the "company" variable', inject(function($controller) { 
@@ -130,5 +130,5 @@ Tests.gameTests = function(){
             expect(g.commodities[0].name).toBeDefined();  
             expect(g.commodities[0].average).toBe(20);
         }));
-    });                                                
+    });                                   
 };

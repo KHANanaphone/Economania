@@ -28,10 +28,7 @@ Game.prototype.newGame = function(){
     this.reputations = {};    
     this.commodities = this.generateCommodities(8);
     
-    this.ship = {
-        spaceUsed: 0,                 
-        size: 100
-    };
+    this.ship = Ship.create(100);
     
     this.company = {
         name: 'Company X',
@@ -55,4 +52,39 @@ Game.prototype.generateCommodities = function(count){
 Game.prototype.generateSaveData = function(){
     
     return JSON.stringify(this);
+};
+
+Game.prototype.buyCommodity = function(commodityId){
+    
+    var planComm = this.planet.commodities[commodityId];
+    
+    if(!planComm)
+        return 0;
+    
+    var space = this.ship.size - this.ship.spaceUsed;
+    var moneyFor = Math.floor(this.company.cash / planComm.price);
+    
+    var toBuy = moneyFor < space ? moneyFor : space;
+    toBuy = toBuy < planComm.count ? toBuy: planComm.count;
+    
+    Ship.addCommodity(this.ship, planComm, toBuy);
+    this.company.cash -= toBuy * planComm.price;
+    planComm.count -= toBuy;    
+    return toBuy;
+};
+
+Game.prototype.sellCommodity = function(commodityId){
+    
+    var planComm = this.planet.commodities[commodityId];
+    
+    if(!planComm)
+        return 0;
+    
+    var shipComm = this.ship.commodities[planComm.name];
+    var toSell = shipComm.count;
+    
+    Ship.removeCommodity(this.ship, planComm.name);
+    this.company.cash += toSell * planComm.price;
+    planComm.count += toSell;
+    return toSell;
 };
