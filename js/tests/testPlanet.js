@@ -44,26 +44,15 @@ Tests.planetTests = function(){
             expect(typeof p.name).toBe('string');
         }));
         
-        it('should have list of commodities sorted by average * count', inject(function($controller) {
+        it('should have list of commodities', inject(function($controller) {
             
             var g = new Game();       
             g.newGame();   
             var hp = Planet.halfGenerate(g);      
             var p = Planet.fullGenerate(g, hp);
             
-            expect(p.commodities instanceof Array).toBeTruthy();
-            expect(p.commodities.length).toBe(g.commodities.length); 
-            
-            var last = 99999999999999999;
-            
-            for(var i = 0; i < p.commodities.length - 1; i++){
-                
-                var comm = p.commodities[i];             
-                var val = comm.count * comm.average;
-                
-                expect(val <= last).toBeTruthy();
-                last = val;
-            };            
+            expect(typeof p.commodities).toBe('object');
+            expect(Object.keys(p.commodities).length).toBe(g.commodities.length);        
         })); 
         
         it('should have a special', inject(function($controller) {

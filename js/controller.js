@@ -1,6 +1,6 @@
 (function(){
     
-var eco = angular.module('economania', []);
+    var eco = angular.module('economania', []);
 
     eco.controller('ecoController', function ($scope) {
 

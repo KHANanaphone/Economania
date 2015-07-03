@@ -1,5 +1,44 @@
 Tests.marketTests = function(){
     
+    describe('commsOnPlanetOrShip filter', function(){
+        
+        var $filter;
+        
+        beforeEach(function(){
+            module('economania');
+            
+            inject(function($injector){
+               $filter = $injector.get('$filter')('commsOnPlanetOrShip'); 
+            });      
+        });
+        
+        it('should show only commodities that are either on the planet or on the ship', inject(function($controller) {
+                
+            var fakeScope = {game: {
+                ship: {
+                    commodities: {
+                        'A': 1,
+                        'B': 1
+                    }
+                }
+            }};
+            
+            var fakeItems = {
+                'A': {count: 1},
+                'B': {count: 0},
+                'C': {count: 1},
+                'D': {count: 0}
+            };
+            
+            var filtered = $filter(fakeItems, fakeScope);
+            
+            expect(filtered.A).toBeDefined();            
+            expect(filtered.B).toBeDefined();            
+            expect(filtered.C).toBeDefined();            
+            expect(filtered.D).toBeUndefined();
+        }));
+    });
+    
     describe('Buying a commodity', function(){
         
         it("Should lower the company's cash accordingly", inject(function($controller) {

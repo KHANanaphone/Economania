@@ -27,7 +27,7 @@ Planet.fullGenerate = function(game, planetData){
     
     function generateComms(game, rating){
         
-        var planComms = [];
+        var planComms = {};
         var comms = Game.shuffleArray(game.commodities);
         var valuesArray = createValuesArray(game, planetData.economyRating);
         var i = 0;
@@ -36,17 +36,17 @@ Planet.fullGenerate = function(game, planetData){
         for(var i = 0; i < comms.length; i++){
             
             var val = valuesArray[i] ? valuesArray[i] : 0;
-            var mult = i < val.length ? i : val.length;
+            var mult = i < val ? i : val;
             var comm = comms[i];
             var count = Math.ceil(val / comm.average);
             var price = Math.ceil(priceFactor * comm.average * (0.6 + mult * 0.2));
 
-            planComms.push({
+            planComms[comm.name] = {
                 name: comm.name, 
                 count: count, 
                 price: price,
                 average: comm.average
-            });
+            };
         };
         
         return planComms;

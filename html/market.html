@@ -1,25 +1,32 @@
 <h1>Market</h1>
 
-<table>
-    <thead>
-        <td>Name</td>
-        <td>Avg Price</td>
-        <td>On Planet</td>
-        <td>Buy Price</td>
-        <td></td>
-        <td>On Ship</td>
-        <td>Sell Price</td>
-    </thead>
-    <tr ng-repeat="comm in game.planet.commodities">
-        <td>{{comm.name}}</td>
-        <td>${{comm.average}}</td>
-        <td>{{comm.count}}</td>
-        <td>${{comm.price}}</td>
-        <td>BUY -> <- SELL</td>
-        <td>?</td>
-        <td>$?</td>
-    </tr>
-</table>
+<div class='market-section'>
+    <div class='comm-row'
+         ng-repeat="comm in game.planet.commodities |  commsOnPlanetOrShip:this | orderObjectBy: 'average' "
+         ng-init="shipComm = game.ship.commodities[comm.name]">
+
+        <div class='comm-name'>
+            {{comm.name}}
+        </div>
+        <div class='comm-on-planet'>
+            <div class='top'>{{comm.count}}</div>
+            <div class='bot'>&#8484;{{comm.price}} Each</div>
+        </div>
+        <div class='comm-buy'>
+            <div class='top'>BUY</div>
+            <div class='bot'>{{ Math.round(100 * comm.price / comm.average) }}%</div>
+        </div>
+        <div class='comm-sell'>
+            <div class='top'>SELL</div>
+            <div class='bot'>{{ Math.round(100 * (comm.price - shipComm.average) / shipComm.average ) }}%</div>
+        </div>
+        <div ng-show="shipComm.count" class='comm-on-ship'>
+            <div class='top'>{{shipComm.count}}</div>
+            <div class='bot'>Paid &#8484;{{shipComm.average}} Each</div>
+        </div>    
+
+    </div>
+</div>
 
 <button ng-click="setScreen('planet')">Back</button> <br />
 <div id="footer" ng-include="'html/_footer.html'"></div>

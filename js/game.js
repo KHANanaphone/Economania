@@ -6,7 +6,7 @@ function Game(vars){
     for(var i in vars)        
         this[i] = vars[i];    
     
-    this.commodityFactor = 50;
+    this.commodityFactor = 100;
 };
 
 Game.shuffleArray = function(a, count){
@@ -32,7 +32,7 @@ Game.prototype.newGame = function(){
     
     this.company = {
         name: 'Company X',
-        cash: 10000
+        cash: 5000
     };
     
     this.planet = Planet.fullGenerate(this, Planet.halfGenerate(this));
@@ -54,9 +54,9 @@ Game.prototype.generateSaveData = function(){
     return JSON.stringify(this);
 };
 
-Game.prototype.buyCommodity = function(commodityId){
+Game.prototype.buyCommodity = function(name){
     
-    var planComm = this.planet.commodities[commodityId];
+    var planComm = this.planet.commodities[name];
     
     if(!planComm)
         return 0;
@@ -73,9 +73,9 @@ Game.prototype.buyCommodity = function(commodityId){
     return toBuy;
 };
 
-Game.prototype.sellCommodity = function(commodityId){
+Game.prototype.sellCommodity = function(name){
     
-    var planComm = this.planet.commodities[commodityId];
+    var planComm = this.planet.commodities[name];
     
     if(!planComm)
         return 0;
