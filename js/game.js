@@ -28,14 +28,14 @@ Game.prototype.newGame = function(){
     this.reputations = {};    
     this.commodities = this.generateCommodities(8);
     
-    this.ship = Ship.create(100);
+    this.ship = Ship.create(100, this.commodities);
     
     this.company = {
         name: 'Company X',
         cash: 5000
     };
     
-    this.planet = Planet.fullGenerate(this, Planet.halfGenerate(this));
+    this.planet = Planet.fullGenerate(this, Planet.halfGenerate(this, {economyRating: 80}));
 };
 
 Game.prototype.generateCommodities = function(count){
@@ -44,7 +44,7 @@ Game.prototype.generateCommodities = function(count){
     var comms = [];
     
     for(var i = 0; i < count; i++)
-        comms.push({name: shuffled[i], average: (i + 1) * 20});
+        comms.push({name: shuffled[i], average: (i + 1) * 30});
     
     return comms;
 };
@@ -55,7 +55,7 @@ Game.prototype.generateSaveData = function(){
 };
 
 Game.prototype.buyCommodity = function(name){
-    
+
     var planComm = this.planet.commodities[name];
     
     if(!planComm)

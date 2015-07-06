@@ -1,6 +1,6 @@
 var Ship = {};
 
-Ship.create = function(size){
+Ship.create = function(size, comms){
     
     var ship = {
         spaceUsed: 0,
@@ -9,6 +9,12 @@ Ship.create = function(size){
     };
     
     Ship.setCrewSize(ship, 6);
+    
+    for(var i = 0; i < comms.length; i++){
+        
+        var comm = comms[i];
+        Ship.addCommodity(ship, comm, 0);
+    };
     
     return ship;
 };
@@ -31,6 +37,7 @@ Ship.addCommodity = function(ship, comm, count){
     }
     else{
         ship.commodities[comm.name] = {
+            name: comm.name,
             count: count,
             spent: comm.price * count,
             average: comm.price
@@ -49,13 +56,13 @@ Ship.removeCommodity = function(ship, commName, count){
     if(!count)
         count = shipComm.count;
     
-    if(count == shipComm.count){
-        delete ship.commodities[commName];
-    }
-    else {
-        shipComm.count -= count;
-        shipComm.spent -= count * shipComm.average;
-    };
+    shipComm.count -= count;
+    shipComm.spent -= count * shipComm.average;
+    
+    if(shipComm.count == 0)
+        shipComm.average = 0;
+    else
+        shipComm.average = Math.round(100 * shipComm.spent / shipComm.count) / 100;
     
     ship.spaceUsed -= count;
 };

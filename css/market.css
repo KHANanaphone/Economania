@@ -1,0 +1,190 @@
+.market-section{
+    overflow-y: auto;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    height: 65%;
+}
+
+.market-section .comm-row{
+    
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 16%;
+    margin-bottom: 1%;
+}
+
+.market-section .comm-row > div{
+    
+    display: inline-block;
+    vertical-align: top;
+}
+
+.market-section .comm-name{
+    font-size: 1.6em;
+    width: 26%;
+    padding: 1.5% 1%;
+}
+
+.market-section .comm-on-planet,
+.market-section .comm-on-ship{
+    
+    text-align: center;
+    width: 17%;
+    padding: 0.5% 1%;
+}
+
+.market-section .comm-buy,
+.market-section .comm-sell{
+    
+    text-align: center;
+    width: 14%;
+    padding: 0% 1%;
+    opacity: 0.3;
+}
+
+.market-section .comm-buy:hover svg polygon,
+.market-section .comm-sell:hover svg polygon{
+    
+    fill: #44F;
+}
+
+.market-section .comm-buy svg polygon,
+.market-section .comm-sell svg polygon{
+   
+    fill: blue;
+    stroke: white;
+    stroke-width: 3;
+}
+
+.market-section .comm-buy svg .button-text,
+.market-section .comm-sell svg .button-text{
+
+    fill: white;
+    font-size: 35px;
+}
+
+.market-section .comm-buy svg .sub-text,
+.market-section .comm-sell svg .sub-text{
+
+    fill: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.market-section .comm-buy svg .sub-text.bad,
+.market-section .comm-sell svg .sub-text.bad{
+    fill: rgb(255, 155, 155);
+}
+
+.market-section .comm-buy svg .sub-text.good,
+.market-section .comm-sell svg .sub-text.good{
+    fill: rgb(155, 255, 155);
+}
+
+.market-section .comm-on-planet .top,
+.market-section .comm-on-ship .top{
+    font-size: 1.5em;
+}
+
+.market-section .comm-on-planet .bot,
+.market-section .comm-on-ship .bot{
+    font-size: 0.8em;
+}
+
+.market-section .comm-buy.active,
+.market-section .comm-sell.active{
+    
+    opacity: 1;
+    cursor: pointer; 
+}
+
+.market-section .comm-buy text,
+.market-section .comm-sell text{
+    
+    opacity: 0;
+}
+
+.market-section .comm-buy.active text,
+.market-section .comm-sell.active text{
+    
+    opacity: 1;
+}
+
+#market-header{
+    width: 100%;
+    height: 13%;
+    position: relative;
+    z-index: 2;
+}
+
+#market-header .back-button{
+    
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    height: 98%;
+    width: 10%;
+    background-color: red;
+    cursor: pointer;
+}
+
+#market-header .back-button:hover{
+    
+    background-color: darkred;
+}
+
+#market-header .market{
+    
+    position: absolute;
+    left: 38%;
+    top: 8%;
+    font-size: 2em;
+    text-align: center;
+}
+
+#market-header .ship{
+    
+    position: absolute;
+    left: 76%;
+    top: 8%;
+    font-size: 2em;
+    text-align: center;
+}
+
+#market-background{
+    
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 80%;
+    z-index: 1;
+    left: 0;
+}
+
+#market-background > div{
+    height: 100%;
+    position: absolute;
+}
+
+#market-background .names{
+    
+    background-color: black;
+    width: 28%;
+    left: 0%;
+}
+
+#market-background .market{
+    
+    background-color: #666;
+    left: 28%;
+    width: 36%;
+}
+
+#market-background .ship{
+    
+    background-color: #844;
+    left: 64%;
+    width: 36%;
+}

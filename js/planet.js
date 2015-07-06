@@ -36,10 +36,10 @@ Planet.fullGenerate = function(game, planetData){
         for(var i = 0; i < comms.length; i++){
             
             var val = valuesArray[i] ? valuesArray[i] : 0;
-            var mult = i < val ? i : val;
+            var mult = 0.7 + (i < valuesArray.length ? i : valuesArray.length) * 0.2;
             var comm = comms[i];
             var count = Math.ceil(val / comm.average);
-            var price = Math.ceil(priceFactor * comm.average * (0.6 + mult * 0.2));
+            var price = Math.ceil(priceFactor * comm.average * mult);
 
             planComms[comm.name] = {
                 name: comm.name, 
@@ -71,13 +71,17 @@ Planet.fullGenerate = function(game, planetData){
     };
 };
 
-Planet.halfGenerate = function(game){
+Planet.halfGenerate = function(game, vars){
     
     var planet = {
         name: getRandomName(),
         economyRating: Math.floor(Math.random() * 101),
         special: getRandomSpecial()
     };
+    
+    if(vars)
+        for(var key in vars)
+            planet[key] = vars[key];
     
     return planet;
     

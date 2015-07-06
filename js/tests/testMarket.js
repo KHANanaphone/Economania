@@ -182,7 +182,7 @@ Tests.marketTests = function(){
             expect(g.company.cash).toBe(7000);
         }));      
                 
-        it("Should remove the commodities value of the ship", inject(function($controller) {
+        it("Should set the commodity's count and average to 0", inject(function($controller) {
                         
             var g = new Game();
             g.newGame();
@@ -197,7 +197,8 @@ Tests.marketTests = function(){
             
             g.sellCommodity(0);
             
-            expect(g.ship.commodities['AAA']).toBeUndefined();
+            expect(g.ship.commodities['AAA'].count).toBe(0);
+            expect(g.ship.commodities['AAA'].average).toBe(0);
         }));     
         
         it("Should decrease the ship's used space", inject(function($controller) {

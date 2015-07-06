@@ -99,6 +99,10 @@
             $scope.game = game;
         };
         
+        $scope.debug = function(p){
+            debugger;
+        };
+        
         $scope.explorePlanet = function(){
             
             $scope.setScreen('event');

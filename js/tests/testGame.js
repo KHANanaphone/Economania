@@ -128,7 +128,6 @@ Tests.gameTests = function(){
             expect(g.commodities).toBeDefined();            
             expect(g.commodities.length).toBe(8);          
             expect(g.commodities[0].name).toBeDefined();  
-            expect(g.commodities[0].average).toBe(20);
         }));
     });                                   
 };

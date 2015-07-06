@@ -40,4 +40,17 @@
             return array;
         }
     });
+    
+    eco.filter('toRelativePct', function(){
+
+        return function(ratio){
+            
+            var n = Math.round(ratio * 100);
+            
+            if(n > 0)
+                return '+' + n + '%';
+            else
+                return n + '%';
+        };
+    });
 })();
