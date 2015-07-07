@@ -16,7 +16,7 @@ Tests.mainMenuTests = function(){
         
         it('should default to mainMenu screen if local storage slot is set to -1', inject(function($controller) {
 
-            localStorage.ecotestSlot = -1;
+            localStorage.removeItem('ecotestSlot')
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
@@ -27,6 +27,7 @@ Tests.mainMenuTests = function(){
         it('should grab current slot & screen from local storage', inject(function($controller) {
             
             var c = new Game();
+            c.init();
             c.screen = 'aaa';
             
             localStorage.ecotestSlot = 0;
@@ -39,13 +40,14 @@ Tests.mainMenuTests = function(){
             expect(scope.screen).toBe('aaa');
         }));
         
-        it('should make a new game when newGame is called', inject(function($controller) {
+        it('should make a new game when loadSlot is called with nothing in storage', inject(function($controller) {
+            
+            localStorage.removeItem('ecotestGame0');
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
             
-            scope.slot = 0;
-            scope.newGame();  
+            scope.loadSlot(0);  
             
             expect(scope.game).toBeDefined();
         }));
@@ -66,12 +68,12 @@ Tests.mainMenuTests = function(){
             expect(scope.game.a).toBe(10000);
         }));
         
-        it('should save to local storage after newGame + difficulty is selected', inject(function($controller) {
+        it('should save to local storage after init + difficulty is selected', inject(function($controller) {
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
             
-            scope.newGame(1);
+            scope.loadSlot(1);
             scope.difficultySelected(2);  
             
             expect(localStorage.ecotestGame1).toBeDefined();

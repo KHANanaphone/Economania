@@ -24,6 +24,7 @@
     <script src="js/tests/testMarket.js"></script>
     <script src="js/tests/testOptions.js"></script>
     <script src="js/tests/testPlanet.js"></script>
+    <script src="js/tests/testTravel.js"></script>
      
     <script src="js/main.js"></script> 
     <script src="js/names.js"></script>  
@@ -35,12 +36,12 @@
 </head>
 <body>
 <div id="container">
-<div id="game" ng-controller="ecoController">
-    <div ng-repeat="screenName in SCREEN_NAMES">    
-        <div ng-attr-id="{{screenName}}" class="screen" ng-show="screen == screenName" 
-             ng-include="'html/' + screenName + '.html'"></div> 
-    </div>
-</div>  
+    <div id="game" ng-controller="ecoController">
+        <div ng-repeat="screenName in SCREEN_NAMES">    
+            <div ng-attr-id="{{screenName}}" class="screen" ng-show="screen == screenName" 
+                 ng-include="'html/' + screenName + '.html'"></div> 
+        </div>
+    </div>  
 </div>  
 </body>
 </html>

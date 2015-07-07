@@ -5,7 +5,7 @@ Tests.planetTests = function(){
         it('should have a name', inject(function($controller) {
             
             var g = new Game();     
-            g.newGame();
+            g.init();
             var p = Planet.halfGenerate(g);
             
             expect(typeof p.name).toBe('string');
@@ -14,7 +14,7 @@ Tests.planetTests = function(){
         it('should have an integer rating between 0 and 100', inject(function($controller) {
             
             var g = new Game();          
-            g.newGame();      
+            g.init();      
             var p = Planet.halfGenerate(g);
             
             expect(p.economyRating).toBeGreaterThan(-1);
@@ -25,7 +25,7 @@ Tests.planetTests = function(){
         it('should have a special', inject(function($controller) {
             
             var g = new Game();    
-            g.newGame();            
+            g.init();            
             var p = Planet.halfGenerate(g);
 
             expect(typeof p.special).toBe('string');
@@ -37,7 +37,7 @@ Tests.planetTests = function(){
         it('should have a name', inject(function($controller) {
                    
             var g = new Game();      
-            g.newGame();
+            g.init();
             var hp = Planet.halfGenerate(g);
             var p = Planet.fullGenerate(g, hp);
             
@@ -47,7 +47,7 @@ Tests.planetTests = function(){
         it('should have list of commodities', inject(function($controller) {
             
             var g = new Game();       
-            g.newGame();   
+            g.init();   
             var hp = Planet.halfGenerate(g);      
             var p = Planet.fullGenerate(g, hp);
             
@@ -58,7 +58,7 @@ Tests.planetTests = function(){
         it('should have a special', inject(function($controller) {
             
             var g = new Game();       
-            g.newGame();   
+            g.init();   
             var hp = Planet.halfGenerate(g);      
             var p = Planet.fullGenerate(g, hp);
             
@@ -68,7 +68,7 @@ Tests.planetTests = function(){
         it('should have three destinations', inject(function($controller) {
             
             var g = new Game();       
-            g.newGame();   
+            g.init();   
             var hp = Planet.halfGenerate(g);      
             var p = Planet.fullGenerate(g, hp);
             

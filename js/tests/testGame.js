@@ -91,7 +91,7 @@ Tests.gameTests = function(){
         it('should set the "planet"', inject(function($controller) { 
             
             var g = new Game()
-            g.newGame();
+            g.init();
 
             expect(g.planet).toBeDefined();
             expect(g.planet.name).toBeDefined();
@@ -104,7 +104,7 @@ Tests.gameTests = function(){
         it('should set the "ship" variable', inject(function($controller) { 
             
             var g = new Game()
-            g.newGame();
+            g.init();
             
             expect(g.ship.spaceUsed).toBe(g.ship.crew);
             expect(g.ship.size).toBe(100);
@@ -114,7 +114,7 @@ Tests.gameTests = function(){
         it('should set the "company" variable', inject(function($controller) { 
             
             var g = new Game()
-            g.newGame();
+            g.init();
             
             expect(g.company).toBeDefined();
             expect(g.company.cash).toBeDefined();
@@ -123,11 +123,25 @@ Tests.gameTests = function(){
         it('should create a randomly picked commodities list', inject(function($controller) { 
             
             var g = new Game()
-            g.newGame();
+            g.init();
             
             expect(g.commodities).toBeDefined();            
             expect(g.commodities.length).toBe(8);          
             expect(g.commodities[0].name).toBeDefined();  
+        }));
+        
+        it('should create the date object', inject(function($controller) { 
+            
+            var g = new Game()
+            g.init();
+            
+            var date = g.date;
+            
+            expect(date).toBeDefined();            
+            expect(date.week).toBe(1);                  
+            expect(date.day).toBe(1);                  
+            expect(date.time).toBe(0);                
+            expect(date.timeString).toBe('00:00');  
         }));
     });                                   
 };

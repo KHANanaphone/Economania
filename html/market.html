@@ -1,7 +1,7 @@
+<div ng-include="'html/backArrow.html'"></div>
+
 <div id="market-header">
-    <div ng-click="setScreen('planet', true);" class="back-button">
-        Back
-    </div>
+    
     <div class="market">
         In Market
     </div>
@@ -23,7 +23,7 @@
         <div ng-class="{active: comm.count > 0}"
              class='comm-buy' ng-click="game.buyCommodity(comm.name)">
             <svg viewbox="0,0,200,130">
-                <polygon points="0,20 100,20 100,0 200,50 100,100 100,80 0,80"></polygon>
+                <polygon points="20,20 100,20 100,0 180,50 100,100 100,80 20,80"></polygon>
                 <text class="button-text" x="90" y="62" text-anchor="middle">BUY</text>
                 <text ng-class="{bad: comm.price > comm.average, good: comm.price / comm.average < 0.75}" 
                       class="sub-text" x="100" y="120" text-anchor="middle">
@@ -34,8 +34,8 @@
         <div ng-class="{active: game.ship.commodities[comm.name].count > 0}" class='comm-sell' 
              ng-click="game.sellCommodity(comm.name)">
             <svg viewbox="0,0,200,130">
-                <polygon points="200,20 100,20 100,0 0,50 100,100 100,80 200,80"></polygon>
-                <text class="button-text" x="120" y="62" text-anchor="middle">SELL</text>
+                <polygon points="180,20 100,20 100,0 20,50 100,100 100,80 180,80"></polygon>
+                <text class="button-text" x="112" y="62" text-anchor="middle">SELL</text>
                 <text ng-class="{bad: comm.price < game.ship.commodities[comm.name].average, 
                                 good: comm.price / game.ship.commodities[comm.name].average > 1.50}"
                       class="sub-text" x="100" y="120" text-anchor="middle">

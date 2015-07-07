@@ -43,13 +43,6 @@
             localStorage[$scope.storageName + 'Slot'] = -1;
         };
         
-        $scope.newGame = function(slot){
-            
-            $scope.slot = slot;
-            $scope.game = new Game();
-            $scope.game.newGame();
-        };
-        
         $scope.difficultySelected = function(diff){
         
             $scope.game.difficulty = diff;
@@ -71,7 +64,7 @@
             
             for(var i = 0; i < 3; i++){
                 var game = localStorage[$scope.storageName + 'Game' + i];
-                $scope.files[i] = game ? new Game(game) : null;
+                $scope.files[i] = game ? new Game(game) : new Game();
             };
         };
         
@@ -93,10 +86,18 @@
         
         $scope.loadSlot = function(slot){
             
-            var prefix = $scope.storageName;
-            var game = new Game(localStorage[prefix + 'Game' + slot]);
+            var game = $scope.files[slot];
+            
+            if(!game.initialized)
+                game.init();
+            
             $scope.screen = game.screen;
             $scope.game = game;
+            
+            //setup events
+            game.on('cashChanged', function(event){
+                debugger;
+            });
         };
         
         $scope.debug = function(p){
@@ -109,6 +110,7 @@
         };
 
         $scope.storageName = $scope.storageName ? $scope.storageName : 'eco';
+        $scope.loadSaves();
         $scope.loadFromLocalStorage();
 
         if($scope.slot == -1)

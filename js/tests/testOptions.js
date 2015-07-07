@@ -2,10 +2,11 @@ Tests.optionsTests = function(){
     
     describe('Options screen tests', function(){
         
-        localStorage.optionstestGame0 = '{"reps":{},"ship":{"spaceUsed":0,"size":100},"name":"Company X","cash":10000,"difficulty":1,"screen":"planet"}';
-        localStorage.optionstestSlot = '0';
-        
-        beforeEach(module('economania'));
+        beforeEach(function(){
+            module('economania');
+            localStorage.optionstestGame0 = '{"reps":{},"ship":{"spaceUsed":0,"size":100},"name":"Company X","cash":10000,"difficulty":1,"screen":"planet","initialized":"true"}';
+            localStorage.optionstestSlot = '0';
+        });
         
         it('should go back to previous screen when back() is called', 
            inject(function($controller) {
@@ -40,7 +41,7 @@ Tests.optionsTests = function(){
         
         it('should save previous screen when save and quit is called', 
            inject(function($controller) {
-            
+
             var scope = {storageName: 'optionstest'},
                 ctrl = $controller('ecoController', {$scope:scope});
             

@@ -5,7 +5,7 @@ Tests.exploreTests = function(){
         beforeEach(module('economania'));
 
         it('should set the screen to "event"', inject(function($controller) {
-            
+
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
 

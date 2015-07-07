@@ -44,7 +44,7 @@ Tests.marketTests = function(){
         it("Should lower the company's cash accordingly", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 count: 10,
@@ -60,7 +60,7 @@ Tests.marketTests = function(){
         it("Should set the commodities object value on the ship if unset", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'aaa',
@@ -80,7 +80,7 @@ Tests.marketTests = function(){
         it("Should add to the commodities object value on the ship if set", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'aaa',
@@ -99,7 +99,7 @@ Tests.marketTests = function(){
         it("Should only buy as many as the ship can afford", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5999;            
             g.planet.commodities[0] = {
                 count: 10,
@@ -115,7 +115,7 @@ Tests.marketTests = function(){
         it("Should increase the ship's used space", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 count: 10,
@@ -132,7 +132,7 @@ Tests.marketTests = function(){
         it("Should only buy as many as can fit on the ship", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 count: 1000,
@@ -149,7 +149,7 @@ Tests.marketTests = function(){
         it("Should lower the amount on the planet", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 count: 10,
@@ -166,7 +166,7 @@ Tests.marketTests = function(){
         it("Should increase the company's cash accordingly", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'AAA',
@@ -185,7 +185,7 @@ Tests.marketTests = function(){
         it("Should set the commodity's count and average to 0", inject(function($controller) {
                         
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'AAA',
@@ -204,7 +204,7 @@ Tests.marketTests = function(){
         it("Should decrease the ship's used space", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'AAA',
@@ -223,7 +223,7 @@ Tests.marketTests = function(){
         it("Should increase the amount on the planet", inject(function($controller) {
             
             var g = new Game();
-            g.newGame();
+            g.init();
             g.company.cash = 5000;            
             g.planet.commodities[0] = {
                 name: 'AAA',

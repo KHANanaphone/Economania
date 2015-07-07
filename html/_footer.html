@@ -1,3 +1,14 @@
-<button ng-click="setScreen('company')">Cash: {{game.company.cash}}</button>
-<button ng-click="setScreen('ship')">Space: {{game.ship.spaceUsed}} / {{game.ship.size}}</button>
-<button ng-click="setScreen('options')">Options</button>
+<div class='relative'>
+    <div class='section left clickable' ng-click="setScreen('company')">    
+        <div class='name'>{{game.company.name}}</div>    
+        <div class='money'>&#8484;{{game.company.cash}}</div>
+    </div>
+    <div class='section middle clickable' ng-click="setScreen('ship')" >
+        <div class='space-bar'>[ ]</div>
+        <div class='space-text'>Space: {{game.ship.spaceUsed}} / {{game.ship.size}}</div>
+    </div>
+    <div class='section right'>   
+        <div class='date'>week {{game.date.week}}, day {{game.date.day}}, {{game.date.timeString}}</div>    
+        <button ng-click="setScreen('options')" class='options'>Options</button>
+    </div>
+</div>

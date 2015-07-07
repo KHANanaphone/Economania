@@ -12,11 +12,9 @@ Tests.fileSelectTests = function(){
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
-
-            scope.loadSaves();
             
             expect(scope.files[0].name).toBe('Bbbb');
-            expect(scope.files[1]).toBe(null);
+            expect(scope.files[1].initialized).toBe(false);
             expect(scope.files[2].name).toBe('Aaaa');
         }));
         

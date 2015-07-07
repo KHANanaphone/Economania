@@ -3,10 +3,12 @@ function Game(vars){
     if(typeof vars === "string")
         vars = JSON.parse(vars);
     
-    for(var i in vars)        
-        this[i] = vars[i];    
+    this.initialized = false;
     
-    this.commodityFactor = 100;
+    for(var i in vars)        
+        this[i] = vars[i]; 
+    
+    this.events = {};
 };
 
 Game.shuffleArray = function(a, count){
@@ -23,11 +25,12 @@ Game.shuffleArray = function(a, count){
     return shuffled;
 };
 
-Game.prototype.newGame = function(){
+Game.prototype.init = function(){
     
+    this.initialized = true;
     this.reputations = {};    
     this.commodities = this.generateCommodities(8);
-    
+    this.commodityFactor = 100;    
     this.ship = Ship.create(100, this.commodities);
     
     this.company = {
@@ -35,7 +38,15 @@ Game.prototype.newGame = function(){
         cash: 5000
     };
     
+    this.date = {
+        week: 1,
+        day: 1,
+        timeString: '00:00',
+        time: 0
+    }
+    
     this.planet = Planet.fullGenerate(this, Planet.halfGenerate(this, {economyRating: 80}));
+    this.screen = 'difficultySelect';
 };
 
 Game.prototype.generateCommodities = function(count){
@@ -68,7 +79,7 @@ Game.prototype.buyCommodity = function(name){
     toBuy = toBuy < planComm.count ? toBuy: planComm.count;
     
     Ship.addCommodity(this.ship, planComm, toBuy);
-    this.company.cash -= toBuy * planComm.price;
+    this.changeCash(-1 * toBuy * planComm.price);
     planComm.count -= toBuy;    
     return toBuy;
 };
@@ -84,7 +95,17 @@ Game.prototype.sellCommodity = function(name){
     var toSell = shipComm.count;
     
     Ship.removeCommodity(this.ship, planComm.name);
-    this.company.cash += toSell * planComm.price;
+    this.changeCash(toSell * planComm.price);
     planComm.count += toSell;
     return toSell;
+};
+
+Game.prototype.changeCash = function(amount){
+  
+    this.company.cash += amount;
+};
+
+Game.prototype.on = function(eventName, callback){
+    
+    this.events[eventName] = callback;
 };
