@@ -1,6 +1,6 @@
 (function(){
     
-    var eco = angular.module('economania', []);
+    var eco = angular.module('economania', ['ngAnimate']);
 
     eco.controller('ecoController', function ($scope) {
 
@@ -78,7 +78,7 @@
             var prefix = $scope.storageName;
             var slot = localStorage[prefix + 'Slot'];
 
-            if(slot) $scope.slot = parseInt(slot);
+            if(slot && slot != '-1') $scope.slot = parseInt(slot);
             else return $scope.slot = -1;
 
             $scope.loadSlot($scope.slot);
@@ -91,12 +91,19 @@
             if(!game.initialized)
                 game.init();
             
+            $scope.slot = slot;
             $scope.screen = game.screen;
             $scope.game = game;
             
             //setup events
             game.on('cashChanged', function(event){
-                debugger;
+                
+                $scope.cashChange = event.change;
+                
+                $('.cashchange')
+                    .stop()
+                    .css({top: 0, opacity: 1})
+                    .animate({top: '-70%', opacity: 0}, 2000);
             });
         };
         

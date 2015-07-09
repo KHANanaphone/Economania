@@ -107,13 +107,16 @@ h1{
     top: 2%;
     height: 10%;
     width: 9%;
-    opacity: 0.5;
     cursor: pointer;
     z-index: 10;
 }
 
-.back-button:hover{
-    opacity: 1;
+.back-button:hover polygon{
+    stroke: white;
+}
+
+.back-button:hover text{
+    stroke: white;
 }
 
 .back-button polygon{
@@ -124,4 +127,25 @@ h1{
 .back-button text{
     fill: #AAA;
     font-size: 50px;
+}
+
+#footer .money{
+    position: relative;
+}
+
+.cashchange{
+    
+    position: absolute;
+    top: 0;
+    font-size: 0.8em;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    right: 3%;
+}
+
+.cashchange.positive{
+    color: #6F6;
+}
+
+.cashchange.negative{
+    color: red;
 }

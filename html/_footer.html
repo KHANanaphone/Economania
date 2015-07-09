@@ -1,7 +1,11 @@
 <div class='relative'>
     <div class='section left clickable' ng-click="setScreen('company')">    
         <div class='name'>{{game.company.name}}</div>    
-        <div class='money'>&#8484;{{game.company.cash}}</div>
+        <div class='money' ng-class='{negative: game.company.cash < 0}'>
+            {{game.company.cash > 0 ? '' : '-'}}&#8484;{{game.company.cash | abs}}     
+            <div ng-class='{positive: cashChange > 0, negative: cashChange < 0}' class='cashchange'>{{cashChange > 0 ? '+' : ''}}{{cashChange}}</div>
+
+        </div>
     </div>
     <div class='section middle clickable' ng-click="setScreen('ship')" >
         <div class='space-bar'>[ ]</div>

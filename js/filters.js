@@ -5,7 +5,7 @@
     eco.filter('commsOnPlanetOrShip', function(){
 
         return function(items, scope){
-
+            
             if(!items)
                 return null;
             
@@ -15,7 +15,7 @@
                 
                 var item = items[key];
                 
-                if(item.count > 0 || scope.game.ship.commodities[key])
+                if(item.count > 0 || scope.game.ship.commodities[key].count > 0)
                     filtered[key] = item;
             };
             
@@ -51,6 +51,14 @@
                 return '+' + n + '%';
             else
                 return n + '%';
+        };
+    });
+    
+    eco.filter('abs', function(){
+        
+        return function(number){
+            
+            return Math.abs(number);
         };
     });
 })();

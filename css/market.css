@@ -3,7 +3,7 @@
     width: 100%;
     position: absolute;
     z-index: 2;
-    height: 65%;
+    height: 67%;
 }
 
 .market-section .comm-row{
@@ -11,7 +11,7 @@
     position: relative;
     display: inline-block;
     width: 100%;
-    height: 16%;
+    height: 14%;
     margin-bottom: 1%;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .market-section .comm-name{
-    font-size: 1.6em;
+    font-size: 1.3em;
     width: 26%;
     padding: 1.5% 1%;
 }
@@ -39,9 +39,16 @@
 .market-section .comm-sell{
     
     text-align: center;
+    height: 100%;
     width: 14%;
     padding: 0% 1%;
     opacity: 0.3;
+}
+
+.market-section .comm-buy svg,
+.market-section .comm-sell svg{
+    
+    height: 100%;
 }
 
 .market-section .comm-buy:hover svg polygon,
@@ -85,7 +92,7 @@
 
 .market-section .comm-on-planet .top,
 .market-section .comm-on-ship .top{
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .market-section .comm-on-planet .bot,
@@ -171,4 +178,8 @@
     background-color: #844;
     left: 64%;
     width: 36%;
+}
+
+.money.negative{
+    color: #F88;
 }

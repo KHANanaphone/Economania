@@ -6,13 +6,14 @@ Tests.fileSelectTests = function(){
         
         it('should load file info when "loadSaves" is called', inject(function($controller) {
 
+            localStorage.ecotestSlot = -1;
             localStorage.ecotestGame0 = new Game({name: 'Bbbb'}).generateSaveData();
             localStorage.removeItem('ecotestGame1');
             localStorage.ecotestGame2 = new Game({name: 'Aaaa'}).generateSaveData();
             
             var scope = {storageName: 'ecotest'},
                 ctrl = $controller('ecoController', {$scope:scope});
-            
+        
             expect(scope.files[0].name).toBe('Bbbb');
             expect(scope.files[1].initialized).toBe(false);
             expect(scope.files[2].name).toBe('Aaaa');

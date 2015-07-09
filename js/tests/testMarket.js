@@ -17,8 +17,10 @@ Tests.marketTests = function(){
             var fakeScope = {game: {
                 ship: {
                     commodities: {
-                        'A': 1,
-                        'B': 1
+                        'A': {count: 1},
+                        'B': {count: 1},
+                        'C': {count: 0},
+                        'D': {count: 0}
                     }
                 }
             }};
@@ -95,22 +97,6 @@ Tests.marketTests = function(){
             expect(g.ship.commodities['aaa'].spent).toBe(150);
             expect(g.ship.commodities['aaa'].average).toBe(7.5);
         }));  
-        
-        it("Should only buy as many as the ship can afford", inject(function($controller) {
-            
-            var g = new Game();
-            g.init();
-            g.company.cash = 5999;            
-            g.planet.commodities[0] = {
-                count: 10,
-                price: 1000
-            };
-            
-            var bought = g.buyCommodity(0);
-            
-            expect(bought).toBe(5);
-            expect(g.company.cash).toBe(999);
-        }));      
         
         it("Should increase the ship's used space", inject(function($controller) {
             

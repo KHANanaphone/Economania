@@ -21,7 +21,7 @@
             <div class='bot'>for &#8484;{{comm.price}} each</div>
         </div>
         <div ng-class="{active: comm.count > 0}"
-             class='comm-buy' ng-click="game.buyCommodity(comm.name)">
+             class='comm-buy' ng-click="comm.count > 0 && game.buyCommodity(comm.name)">
             <svg viewbox="0,0,200,130">
                 <polygon points="20,20 100,20 100,0 180,50 100,100 100,80 20,80"></polygon>
                 <text class="button-text" x="90" y="62" text-anchor="middle">BUY</text>
@@ -32,7 +32,7 @@
             </svg>
         </div>
         <div ng-class="{active: game.ship.commodities[comm.name].count > 0}" class='comm-sell' 
-             ng-click="game.sellCommodity(comm.name)">
+             ng-click="game.ship.commodities[comm.name].count > 0 && game.sellCommodity(comm.name)">
             <svg viewbox="0,0,200,130">
                 <polygon points="180,20 100,20 100,0 20,50 100,100 100,80 180,80"></polygon>
                 <text class="button-text" x="112" y="62" text-anchor="middle">SELL</text>
@@ -45,7 +45,7 @@
         </div>
         <div ng-show="game.ship.commodities[comm.name].count" class='comm-on-ship'>
             <div class='top'>{{game.ship.commodities[comm.name].count}}</div>
-            <div class='bot'>Paid &#8484;{{game.ship.commodities[comm.name].average}} Each</div>
+            <div class='bot'>paid &#8484;{{game.ship.commodities[comm.name].average}} Each</div>
         </div>    
 
     </div>

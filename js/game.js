@@ -72,11 +72,8 @@ Game.prototype.buyCommodity = function(name){
     if(!planComm)
         return 0;
     
-    var space = this.ship.size - this.ship.spaceUsed;
-    var moneyFor = Math.floor(this.company.cash / planComm.price);
-    
-    var toBuy = moneyFor < space ? moneyFor : space;
-    toBuy = toBuy < planComm.count ? toBuy: planComm.count;
+    var space = this.ship.size - this.ship.spaceUsed;    
+    var toBuy = space < planComm.count ? space: planComm.count;
     
     Ship.addCommodity(this.ship, planComm, toBuy);
     this.changeCash(-1 * toBuy * planComm.price);
@@ -102,7 +99,16 @@ Game.prototype.sellCommodity = function(name){
 
 Game.prototype.changeCash = function(amount){
   
+    var e = {
+        old: this.company.cash,
+        new: this.company.cash + amount,
+        change: amount
+    };
+    
     this.company.cash += amount;
+    
+    if(this.events['cashChanged'])
+        this.events['cashChanged'](e);
 };
 
 Game.prototype.on = function(eventName, callback){
