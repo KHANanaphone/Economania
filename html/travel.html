@@ -1,4 +1,29 @@
-<h1>Travel</h1>
+<div ng-include="'html/backArrow.html'"></div>
+<div class="screen-title">Travel</div>
+    
+<svg id="space-section" ng-class='travelInfo ? "traveling" : "selecting"' viewbox='0, 0, 800, 400'>
+    
+    <g transform='translate(100,200)' class='current-planet'>
+        <circle r='25'></circle>
+        <text y='-35' text-anchor='middle'>{{game.planet.name}}</text>
+    </g>
+    
+    <g transform='translate(120,200)' class='ship'>
+        <circle r='10'></circle>
+    </g>
+    
+    <g transform='translate({{planet.distance}},{{100 + $index * 100}})' class='dest' ng-repeat='planet in game.planet.destinations' ng-click='travel($index)'>
+        <rect width="200" height="55" x="-25" y="-30"></rect>
+        <circle r='25'></circle>
+        <text class='name' x='50' y='-20'>{{planet.name}}</text>
+        <text class='market' x='50' y='0'>Market Strength: 
+            <tspan ng-class='{bad: planet.economyRating < 25, good: planet.economyRating > 75}'>
+                {{planet.economyRating}}%
+            </tspan>
+        </text>
+        <text class='special' x='50' y='20'>Special: {{planet.special}}</text>
+    </g>
+    
+</svg>
 
-<button ng-click="setScreen('planet')">Back</button> <br />
 <div id="footer" ng-include="'html/_footer.html'"></div>

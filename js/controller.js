@@ -115,6 +115,11 @@
             
             $scope.setScreen('event');
         };
+        
+        $scope.travel = function(index){
+                        
+            $scope.travelInfo = game.setDestination(index);
+        };
 
         $scope.storageName = $scope.storageName ? $scope.storageName : 'eco';
         $scope.loadSaves();

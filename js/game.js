@@ -115,3 +115,7 @@ Game.prototype.on = function(eventName, callback){
     
     this.events[eventName] = callback;
 };
+
+Game.prototype.setDestination = function(index){
+    
+};

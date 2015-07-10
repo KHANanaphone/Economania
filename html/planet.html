@@ -1,7 +1,9 @@
-<h1>Planet</h1>
+<div class="screen-title">Welcome to {{game.planet.name}}</div>
 
-<button ng-click="setScreen('market')">Market</button> <br />
-<button ng-click="explorePlanet()">Explore</button> <br />
-<button ng-click="setScreen('travel')">Travel</button> <br />
+<div id="planet-buttons">
+    <div ng-click="setScreen('market')">Market</div>
+    <div ng-click="exploreePlanet()">Explore</div>
+    <div ng-click="setScreen('travel')">Travel</div>
+</div>
 
 <div id="footer" ng-include="'html/_footer.html'"></div>

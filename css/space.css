@@ -1,0 +1,47 @@
+#space-section{
+    width: 100%;
+    height: 80%;
+}
+
+#space-section .ship circle{
+    stroke: red;
+    stroke-width: 3;
+    fill: #F66;
+}
+
+#space-section .current-planet text{
+    fill: white;
+    font-size: 1em;
+}
+
+#space-section .current-planet circle,
+#space-section .dest circle{
+    stroke: white;
+    stroke-width: 3;
+}
+
+#space-section .dest text{
+    fill: white;
+    font-size: 0.75em;
+}
+
+#space-section .dest .name{
+    font-size: 1em;
+}
+
+#space-section .market .bad{
+    fill: #F88;
+}
+
+#space-section .market .good{
+    fill: #8F8;
+}
+
+#space-section .dest{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#space-section.selecting .dest:hover{
+    opacity: 1;
+}

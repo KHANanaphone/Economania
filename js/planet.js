@@ -76,7 +76,8 @@ Planet.halfGenerate = function(game, vars){
     var planet = {
         name: getRandomName(),
         economyRating: Math.floor(Math.random() * 101),
-        special: getRandomSpecial()
+        special: getRandomSpecial(),
+        distance: Math.floor(300 + Math.random() * 401)
     };
     
     if(vars)

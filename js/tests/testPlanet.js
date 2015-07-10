@@ -30,6 +30,16 @@ Tests.planetTests = function(){
 
             expect(typeof p.special).toBe('string');
         }));
+        
+        it('should have a between 300 and 600', inject(function($controller) {
+            
+            var g = new Game();    
+            g.init();            
+            var p = Planet.halfGenerate(g);
+
+            expect(p.distance >= 300).toBeTruthy();
+            expect(p.distance <= 700).toBeTruthy();
+        }));
     });    
     
     describe('A full-generated planet', function(){
